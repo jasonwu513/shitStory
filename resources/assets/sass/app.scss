@@ -7,3 +7,41 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+
+.admin .col-xs-3{
+  // color:red;
+  word-break: break-all;
+}
+
+.add-btn {
+  margin: 10px;
+}
+
+.admin-tumbnail{
+  max-width: 100px;
+
+  max-height: 50px;
+  overflow: hidden;
+
+  img{
+    width: 100%;
+  }
+}
+
+.container.admin {
+    min-height: 60px;
+}
+
+.showimage{
+  max-width: 95%;
+}
+
+.showdata{
+  margin-top: 15px;
+}
+
+label{
+  width: 100%;
+}

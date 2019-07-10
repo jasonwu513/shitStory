@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 
 class PostController extends Controller
 {
+  public function __construct(){
+    $this->middleware('auth');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('home')->withPosts(Post::all());
+        return view('home')->withPosts(Post::where('user_id', '=', Auth::id())->get());
+        $user_id = Auth::id();
+        Log::info('Showing  user id: '. $path);
+        // $posts = Post::all();
+        // return view('home', ['posts' => $posts]);
     }
 
     /**
@@ -35,8 +45,39 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post=Post::create($request->all());
-        return redirect('post');        
+        // $post=Post::create($request->all());
+        // $post->user_id = Auth::id();
+        $image = $request->file('thumbnail')->getRealpath();
+        // $image = imagecreatefromJPEG($imagePath);
+        //
+        // $exif = exif_read_data($request->file('thumbnail'));
+        // if(!empty($exif['Orientation'])) {
+        //     switch($exif['Orientation']) {
+        //         case 8:
+        //             $image = imagerotate($image,90,0);
+        //             break;
+        //         case 3:
+        //             $image = imagerotate($image,180,0);
+        //             break;
+        //         case 6:
+        //             $image = imagerotate($image,-90,0);
+        //             break;
+        //     }
+        // }
+
+        $path = $request->file('thumbnail')->store('public');
+        // Log::info('Showing path: '. $path);
+        // Log::info('Showing   $image: '.  $image);
+        // Log::info('Showing   $orientation: '.  $exif['Orientation']);
+
+        $path = str_replace('public/','/storage/', $path );
+
+          $post =new Post;
+        $post->fill($request->all());
+        $post->user_id = Auth::id();
+        $post->thumbnail = $path;
+        $post->save();
+        return redirect('post');
     }
 
     /**

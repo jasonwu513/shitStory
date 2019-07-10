@@ -62,6 +62,22 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            a.shit-button {
+                display: block;
+                border-radius: 40px;
+                border: solid 2px grey;
+                margin-top: 110px;
+                text-decoration: none;
+            }
+            .shitimage{
+              margin-top: 120px;
+            }
+            a.shit-button div {
+                color: #333;
+                font-size: 3rem;
+                decoration: none;
+            }
         </style>
     </head>
     <body>
@@ -79,15 +95,16 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Shit Story
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <h1>History Herstory and <strong>Shitstory</strong></h1>
+
+                <a class="shit-button" href="{{route('post')}}"><div> shit  </div>  </a>
+
+                <div class="shitimage">
+                  <img src="{{ asset('img/shitw.png') }}" alt="a shit">
+
                 </div>
             </div>
         </div>

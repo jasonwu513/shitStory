@@ -7,9 +7,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" action="{{ url('post',$post->id) }}" method="post">
+                    <form class="form-horizontal" action="{{ url('post',$post->id) }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
+                        <label for="">圖片</label>
+                        <img class="showimage" src="{{$post->thumbnail}}" alt="thumbnail">
                         <label for="">標題</label>
                         <input class="form-control" type="text" name="title" value="{{ $post->title }}">
                         <label for="">內容</label>
@@ -17,7 +19,9 @@
                             {{ $post->content }}
                         </textarea>
                         <br/>
-                        <input class="btn btn-default" type="submit" value="新增">
+                        <input class="btn btn-primary" type="submit" value="更新">
+
+                        
                     </form>
                 </div>
             </div>
